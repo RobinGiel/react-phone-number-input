@@ -63,21 +63,23 @@ const DIVIDER_STYLE = {
 }
 
 export function CountrySelectWithIcon({
-	  value,
-	  options,
-	  className,
-	  iconComponent: Icon,
-	  getIconAspectRatio,
-	  arrowComponent: Arrow = () => (
-		<div className="PhoneInputCountrySelectArrow" />
-	  ),
-	  unicodeFlags,
-	  ...rest
+  value,
+  options,
+  className,
+  iconComponent: Icon,
+  getIconAspectRatio,
+  arrowComponent: Arrow,
+  unicodeFlags,
+  ...rest
 	}) {
   
 	const selectedOption = useMemo(() => {
 	  return getSelectedOption(options, value)
 	}, [options, value])
+
+  if (!Arrow) {
+    Arrow = () => <div className="PhoneInputCountrySelectArrow" />;
+  }
   
 	return (
 	  <div className="PhoneInputCountry">
