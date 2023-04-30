@@ -93,13 +93,16 @@ export function CountrySelectWithIcon({
 			</div>
 		}
   
-  		{!(unicodeFlags && value) &&
-		  <Icon
-			aria-hidden
-			country={value}
-			label={selectedOption && selectedOption.label}
-			aspectRatio={unicodeFlags ? 1 : undefined}/>
-		}
+      {/* Either an SVG flag icon or a default icon. */}
+      {Icon ?
+        <Icon
+          aria-hidden
+          country={value}
+          label={selectedOption && selectedOption.label}
+          aspectRatio={unicodeFlags ? 1 : undefined} /> :
+          <div className="PhoneInputCountryIconUnicode">
+            {getUnicodeFlagIcon('ZZ')}
+          </div>}
   
 		<Arrow />
 	  </div>
